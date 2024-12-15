@@ -6,12 +6,13 @@ import lombok.*;
 
 import java.util.Date;
 
-
 @Entity
 @Table(name = "auctions")
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
+
+
 public class Auction {
 
     @Id
@@ -22,6 +23,7 @@ public class Auction {
     @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
+    @Getter
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 10)
     private Status status = Status.PENDING;
@@ -40,4 +42,5 @@ public class Auction {
     public enum Status {
         PENDING, ONGOING, COMPLETED
     }
+
 }
