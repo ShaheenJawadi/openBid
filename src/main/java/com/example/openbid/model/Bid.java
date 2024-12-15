@@ -25,7 +25,7 @@ public class Bid {
     @JoinColumn(name = "bidder_id", nullable = false)
     private User bidder;
 
-    @Column(nullable = false, precision = 10, scale = 2)
+    @Column(nullable = false)
     private double amount;
 
     @Temporal(TemporalType.TIMESTAMP)
