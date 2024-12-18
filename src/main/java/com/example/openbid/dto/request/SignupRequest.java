@@ -2,6 +2,8 @@ package com.example.openbid.dto.request;
 
 import jakarta.validation.constraints.*;
 
+import java.util.List;
+
 public class SignupRequest {
     @NotBlank
     @Size(min = 3, max = 20)
@@ -13,7 +15,7 @@ public class SignupRequest {
     @Size(min = 8, max = 30)
     private String password;
     @NotBlank
-    private String role;
+    private List<String> role;
 
     public String getUsername() {
         return username;
@@ -39,11 +41,11 @@ public class SignupRequest {
         this.password = password;
     }
 
-    public String getRole() {
+    public List<String> getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(List<String> role) {
         this.role = role;
     }
 }
