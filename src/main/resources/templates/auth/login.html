@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html layout:decorate="~{auth/base}" xmlns:layout="http://www.w3.org/1999/xhtml">
-<body>
+
 <div layout:fragment="content">
-    <div>login</div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input class="form-control form-control-lg" type="email" placeholder="Email" >
+    </div>
+    <div class="mb-3">
+        <label  class="form-label">Mot de pass</label>
+        <input class="form-control form-control-lg" type="password" placeholder="Mot de pass" >
+    </div>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+
+        <button class="btn btn-primary" type="button">Se connecter</button>
+    </div>
 </div>
-</body>
+
 </html>
