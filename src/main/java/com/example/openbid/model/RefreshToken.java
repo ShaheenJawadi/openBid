@@ -1,10 +1,18 @@
 package com.example.openbid.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.time.Instant;
 
+
 @Entity
+@Table(name = "refresh_tokens")
+@Getter
+@Setter
+@RequiredArgsConstructor
 public class RefreshToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +24,4 @@ public class RefreshToken {
 
     private String token;
     private Instant expiryDate;
-
-    // Getters and Setters
 }
