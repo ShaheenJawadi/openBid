@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.Date;
 
+
 @Entity
 @Table(name = "items")
 @Getter
@@ -50,4 +51,11 @@ public class Item {
 
     @Column(nullable = true , name = "tags")
     private String tags;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)  // Add category relation
+    private Category category;  // New field for category
+
+
 }
