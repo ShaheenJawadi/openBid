@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
-<head>
-    <title>OpenBid</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
+
+
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
 <body>
+<div layout:fragment="pagesWrapper">
+    <main>
 
-<main>
+        <div class="authPageWrapper">
+            <div class="authPgae">
+                <div class="logoHolder">
+                    <img src="/images/logo.svg" alt="OpenBid Logo">
+                </div>
+                <div class="authFormHolder">
+                    <div layout:fragment="content">
 
-    <div class="authPageWrapper">
-        <div class="authPgae">
-            <div class="logoHolder">
-              <img src="/images/logo.svg" alt="OpenBid Logo">
+                    </div>
+                </div>
             </div>
-            <div class="authFormHolder">
-            <div layout:fragment="content">
 
-            </div>
-        </div>
         </div>
 
-    </div>
 
-
-</main>
-
+    </main>
+</div>
 </body>
 </html>
+
+
