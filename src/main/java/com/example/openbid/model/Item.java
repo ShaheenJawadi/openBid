@@ -44,4 +44,10 @@ public class Item {
     @Temporal(TemporalType.TIMESTAMP)
     @org.hibernate.annotations.UpdateTimestamp
     private Date updatedAt;
+
+    @Column(nullable = true ,name = "item_images")
+    private String itemImage;
+
+    @Column(nullable = true , name = "tags")
+    private String tags;
 }
