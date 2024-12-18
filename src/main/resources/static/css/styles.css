@@ -104,7 +104,7 @@
 html,
 body {
     max-width: 100vw;
-    overflow: hidden;
+    overflow: auto;
 }
 
 a {
@@ -135,4 +135,88 @@ a {
     border-top: 1px solid #6f6f6f8c;
     margin: 20px 0;
     padding-top: 20px;
+}
+
+/* item-list */
+.itemListing{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.itemListing .singleItem .itemImg{
+    border-bottom: 1px solid #6f6f6f8c;
+
+}
+
+.itemListing .singleItem .info .infoBox1{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 8px;
+}
+
+.itemListing .singleItem .info .infoBox1 .left{
+
+}
+.itemListing .singleItem .info .infoBox1 .left .cat{
+font-size: 12px;
+    width: max-content;
+    font-weight: 500;
+    color: #fff;
+    background-color: var(--info-color);
+    border-radius: 3px;
+    padding: 2px 5px;
+}
+.itemListing .singleItem .info .infoBox1 .left .name{
+    font-size: 14px;
+    text-align: left;
+}
+
+.itemListing .singleItem .info .infoBox1 .right .tit{
+    font-size: 11px;
+    color: #5d5d5d;
+}
+
+.itemListing .singleItem .info .infoBox1 .right .prix{
+
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+
+
+
+
+
+.itemListing .singleItem .info .infoBox2 {
+display: flex;
+    border-top: 1px solid #6f6f6f8c;
+    padding: 5px;
+}
+.itemListing .singleItem .info .infoBox2 .single {
+flex: 1;
+
+}
+
+
+.itemListing .singleItem .info .infoBox2 .single .tit {
+
+    font-size: 13px;
+    text-align: left;
+    color: #5d5d5d;
+}
+
+.itemListing .singleItem .info .infoBox2 .single .val {
+
+    font-size: 14px;
+    font-weight: 600;
+}
+.itemListing .singleItem .btm{
+    width: 50%;
+    display: grid;
+    place-self: flex-end;
+
 }
