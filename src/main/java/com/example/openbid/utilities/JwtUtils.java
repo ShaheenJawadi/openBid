@@ -1,5 +1,6 @@
 package com.example.openbid.utilities;
 import io.jsonwebtoken.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -8,15 +9,18 @@ import java.util.function.Function;
 
 @Component
 public class JwtUtils {
-    private final String SECRET_KEY = "test_test_test";
+    @Value("${jwt.secret}")
+    private String secretKey;
 
-    public String generateToken(String username, List<String> roles) {
+    @Value("${jwt.expirationMs}")
+    private long jwtExpirationMs;
+    public String generateToken(String username, String role) {
         return Jwts.builder()
                 .setSubject(username)
-                .claim("roles", roles)
+                .claim("role", role)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
+                .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
 
@@ -24,9 +28,9 @@ public class JwtUtils {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public List<String> extractRoles(String token) {
+    public String extractRole(String token) {
         Claims claims = extractAllClaims(token);
-        return (List<String>) claims.get("roles");
+        return claims.get("role", String.class);
     }
 
     public boolean validateToken(String token) {
@@ -43,6 +47,9 @@ public class JwtUtils {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+        return Jwts.parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(token)
+                .getBody();
     }
 }

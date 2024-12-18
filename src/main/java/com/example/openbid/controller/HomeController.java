@@ -22,4 +22,18 @@ public class HomeController {
             return "publicPages/itemPage";
 
     }
+
+
+
+    @GetMapping("/login")
+    public String loginPage(){
+        return "auth/login";
+    }
+
+
+
+    @GetMapping("/register")
+    public String registerPage(){
+        return "auth/register";
+    }
 }

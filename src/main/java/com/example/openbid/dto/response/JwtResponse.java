@@ -6,9 +6,9 @@ public class JwtResponse {
     private String token;
     private String refreshToken;
     private String username;
-    private List<String> roles;
+    private String roles;
 
-    public JwtResponse(String token, String refreshToken, String username, List<String> roles) {
+    public JwtResponse(String token, String refreshToken, String username, String roles) {
         this.token = token;
         this.refreshToken = refreshToken;
         this.username = username;
@@ -39,11 +39,11 @@ public class JwtResponse {
         this.username = username;
     }
 
-    public List<String> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 }
