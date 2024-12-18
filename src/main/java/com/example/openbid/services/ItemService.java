@@ -9,8 +9,10 @@ import com.example.openbid.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.Normalizer;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 interface ItemServiceInterface {
     Item createItem(Item item, List<String> tags, Long categoryId);
@@ -47,6 +49,8 @@ public class ItemService  implements ItemServiceInterface {
                 .orElseThrow(() -> new RuntimeException("Category not found"));
         item.setCategory(category);
 
+        item.setSlug(generateSlug(item.getTitle()));
+
         return itemRepository.save(item);
     }
 
@@ -71,5 +75,13 @@ public class ItemService  implements ItemServiceInterface {
         Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new RuntimeException("Category not found"));
         return itemRepository.findByCategory(category);  // Fetch items by category
+    }
+
+
+    private String generateSlug(String title) {
+        String normalized = Normalizer.normalize(title, Normalizer.Form.NFD);
+        String slug = Pattern.compile("\\p{InCombiningDiacriticalMarks}+").matcher(normalized).replaceAll("");
+        slug = slug.toLowerCase().replaceAll("[^a-z0-9]+", "-").replaceAll("-$", "").replaceAll("^-", "");
+        return slug;
     }
 }

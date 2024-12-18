@@ -58,4 +58,7 @@ public class Item {
     private Category category;  // New field for category
 
 
+    @Column(nullable = false, unique = true, length = 150)
+    private String slug; // Added slug field
+
 }
