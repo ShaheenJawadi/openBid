@@ -227,3 +227,75 @@ a {
     place-self: flex-end;
 
 }
+
+
+/* item page */
+
+.singleItemPage{
+    display: flex;
+
+}
+
+.singleItemPage .imgHolder{
+    flex: 40%;
+
+}
+.singleItemPage .imgHolder img{
+    border-radius: 5px;
+}
+.singleItemPage .leftSide{
+    flex:60%;
+    padding: 15px;
+}
+
+.singleItemPage .leftSide .case{
+    border-bottom: 1px solid #6f6f6f8c;
+    padding: 10px;
+}
+.singleItemPage .leftSide .case:last-of-type{
+    border-bottom: unset;
+}
+.singleItemPage .leftSide .case.s1{
+display: flex;
+flex-direction: column;
+    gap: 5px;
+}
+.singleItemPage .leftSide .case.s1 .title{
+color: #000;
+    font-size: 22px;
+    font-weight: 600;
+
+}
+
+.singleItemPage .leftSide .case.s1 .description{
+color: #2c3e50;
+    font-size: 17px;
+}
+
+
+.singleItemPage .leftSide .case.s1 .postedAt{
+color: #5d5d5d;
+    font-size: 15px;
+    text-align: right;
+}
+
+.singleItemPage .leftSide .case.s2{
+    display: flex;
+
+}
+
+.singleItemPage .leftSide .case.s2 .tit{
+    flex: 1;
+    font-weight: 500;
+    font-size: 19px;
+
+}
+
+.singleItemPage .leftSide .case.s2 .info{
+flex: 1;
+    font-size:20px;
+}
+
+.singleItemPage .leftSide .case.s2 .btn{
+
+}
