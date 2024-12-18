@@ -14,8 +14,14 @@ public class AuthController {
     @Autowired
     private UserService userService;
     @GetMapping("/login")
-    public String getAllUsers(){
-        System.out.println("login");
+    public String loginPage(){
         return "auth/login";
+    }
+
+
+
+    @GetMapping("/register")
+    public String registerPage(){
+        return "auth/register";
     }
 }
