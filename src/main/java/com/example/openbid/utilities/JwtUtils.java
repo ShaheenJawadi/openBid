@@ -1,26 +1,26 @@
 package com.example.openbid.utilities;
+
 import io.jsonwebtoken.*;
-import org.springframework.beans.factory.annotation.Value;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
+import java.security.Key;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
 
 @Component
 public class JwtUtils {
-    @Value("${jwt.secret}")
-    private String secretKey;
+    // Generate a secure random key for HS256 (256 bits)
+    private final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
-    @Value("${jwt.expirationMs}")
-    private long jwtExpirationMs;
     public String generateToken(String username, String role) {
         return Jwts.builder()
                 .setSubject(username)
-                .claim("role", role)
+                .claim("roles", role)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
-                .signWith(SignatureAlgorithm.HS256, secretKey)
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 hours
+                .signWith(SECRET_KEY)
                 .compact();
     }
 
@@ -28,9 +28,9 @@ public class JwtUtils {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public String extractRole(String token) {
+    public List<String> extractRoles(String token) {
         Claims claims = extractAllClaims(token);
-        return claims.get("role", String.class);
+        return (List<String>) claims.get("roles");
     }
 
     public boolean validateToken(String token) {
@@ -48,7 +48,7 @@ public class JwtUtils {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
-                .setSigningKey(secretKey)
+                .setSigningKey(SECRET_KEY)
                 .parseClaimsJws(token)
                 .getBody();
     }

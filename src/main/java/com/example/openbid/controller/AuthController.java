@@ -18,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -37,36 +39,21 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     @PostMapping("/login")
     public JwtResponse authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-        // Authenticate user credentials
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
-                )
-        );
 
-        // Retrieve user from the database
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
         User user = userRepository.findByUsername(loginRequest.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // Generate JWT token with user roles
-        String jwtToken = jwtUtils.generateToken(
-                user.getUsername(),
-                user.getRole().name()
-        );
+        String jwtToken = jwtUtils.generateToken(user.getUsername(), user.getRole().name());
 
-        // Generate refresh token
         String refreshToken = refreshTokenService.createRefreshToken(user.getId()).getToken();
 
-        // Return response
-        return new JwtResponse(
-                jwtToken,
-                refreshToken,
-                user.getUsername(),
-                user.getRole().name()
-        );
+        return new JwtResponse(jwtToken, refreshToken, user.getUsername(), user.getRole().name());  // Returning a single role
     }
 
     @PostMapping("/register")

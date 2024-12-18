@@ -1,11 +1,13 @@
 package com.example.openbid.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -39,6 +41,10 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<RefreshToken> refreshTokens;
+
 
     public enum Role {
         BUYER, SELLER, ADMIN
