@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+html,
+body {
+    max-width: 100vw;
+    overflow: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.authPageWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+.authPageWrapper .authPgae{
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 2px 3px 4px 3px #7b78787a;
+    min-width: 30%;
+}
+.authPageWrapper .authPgae .logoHolder{
+    width: 200px;
+    display: flex;
+    justify-self: center;
+}
+
+.authPageWrapper .authPgae .authFormHolder{
+    border-top: 1px solid #6f6f6f8c;
+    margin: 20px 0;
+    padding-top: 20px;
+}
